@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form_book {
+            width: 300px;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .list {
+            width: 300px;
+        }
+        
+        .block {
+            margin: 10px 0;
+            border-bottom: 1px solid grey;
+        }
+        
+        .block p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="form_book" action="">
+        <label for="text">Введите имя; </label>
+        <input type="text" name="text" id="text" placeholder="name" /><br />
+        <label for="text">Введите заметку: </label>
+        <textarea name="desc" id="desc" cols="30" rows="10"></textarea><br />
+        <input type="date" id="date" name="date" />
+        <input type="button" name="submit" id="submit" value="Добавить" />
+    </form>
+    <div class="list" id="list"></div>
+<script>
+const text= document.getElementById('text');
+const desc= document.getElementById('desc');
+const dates= document.getElementById('date');
+const submit= document.getElementById('submit');
+const info = [];
+
+function addList(){
+    const div= document.createElement('div');
+    div.classList.add('block');
+
+    const elP = document.createElement('p');
+    elP.textContent = `name: ${text.value}`;
+    
+    const list = document.getElementById('list');
+    list.prepend(div);
+    div.append(elP);
+
+
+    const elPDesc = document.createElement('p');
+    elPDesc.textContent = `note: ${desc.value}`;
+    div.append(elPDesc);
+
+    const elPDate = document.createElement('p');
+    elPDate.textContent= `date: ${dates.value}`;
+    div.append(elPDate);
+
+		const infoItem = {
+			name: text.value,
+			note: desc.value,
+			date: dates.value,
+		};
+
+		info.push(infoItem);
+		console.log(info);
+}
+submit.addEventListener('click', addList);
+</script>
+</body>
+
+</html>
